@@ -22,7 +22,9 @@
  */
 
 export const createRecipeString = (ingredientsArr) => {
-  return;
+  let recipe = ingredientsArr.join("+");
+  return recipe;
+
 };
 
 /**
@@ -33,7 +35,10 @@ export const createRecipeString = (ingredientsArr) => {
  */
 
 export const getFirstAndLastItems = (itemsArr) => {
-  return;
+  let newArray = [];
+  newArray.push(itemsArr[0]);
+  newArray.push(itemsArr[itemsArr.length-1]);
+  return newArray;
 };
 
 /**
@@ -44,7 +49,12 @@ export const getFirstAndLastItems = (itemsArr) => {
  */
 
 export const totalScores = (scoreArr) => {
-  return;
+  // must initialise total before using
+  let total = 0;
+  for (let i = 0; i < scoreArr.length; i++) {
+    total += scoreArr[i];
+  }
+  return total;
 };
 
 /**
@@ -60,7 +70,11 @@ export const totalScores = (scoreArr) => {
  */
 
 export const totalRange = (rangeMax) => {
-  return;
+  let sum = 0;
+  for (let i=0; i<=rangeMax; i++) {
+    sum += i;
+  }
+  return sum;
 };
 
 /**
@@ -71,7 +85,12 @@ export const totalRange = (rangeMax) => {
  */
 
 export const moveFirstAndLastItems = (itemsArr) => {
-  return;
+  let newArr = [];
+  newArr.push(itemsArr[itemsArr.length-1]);
+  for (let i = 0; i < itemsArr.length-1; i++) {
+    newArr.push(itemsArr[i]);
+  }
+  return newArr;
 };
 
 /**
@@ -89,7 +108,13 @@ export const moveFirstAndLastItems = (itemsArr) => {
  */
 
 export const removeEvenNumbers = (numberArr) => {
-  return;
+  let oddNumber = [];
+  for (let i=0; i<numberArr.length; i++) {
+    if (numberArr[i] % 2 !== 0) {
+      oddNumber.push(numberArr[i]);
+    }
+  }
+  return oddNumber;
 };
 
 /**
@@ -105,7 +130,16 @@ export const removeEvenNumbers = (numberArr) => {
  */
 
 export const generateAverage = (numberArr) => {
-  return;
+  if (numberArr.length === 0) {
+    return 0;
+  }
+  let average = 0;
+  for (let i=0; i<numberArr.length; i++) {
+    average += numberArr[i];
+  }
+  average = average / numberArr.length;
+  average = Math.round(average);
+  return average;
 };
 
 /**
@@ -116,7 +150,12 @@ export const generateAverage = (numberArr) => {
  */
 
 export const reverseOrder = (toReverseArr) => {
-  return;
+  let array = [...toReverseArr]
+  let reversedArr = [];
+  for (let i=(array.length-1); i>=0; i--) {
+    reversedArr.push(array[i]);
+  }
+  return reversedArr;
 };
 
 /**
@@ -138,7 +177,16 @@ export const reverseOrder = (toReverseArr) => {
  */
 
 export const generateHighscores = (playersArr, scoresArr) => {
-  return;
+  if (playersArr.length === 0 || scoresArr.length === 0 || playersArr.length !== scoresArr.length) {
+    return "invalid inputs"
+  }
+  let finalArray = [];
+  for (let i=0; i<playersArr.length; i++) {
+    let stringItem = "";
+    stringItem = "P:" + (i+1) + " " + playersArr[i] + " scored " + scoresArr[i];
+    finalArray.push(stringItem);
+  }
+  return finalArray;
 };
 
 /**
@@ -168,5 +216,21 @@ export const generateHighscores = (playersArr, scoresArr) => {
 // };
 
 export const encryptString = (toEncrypt) => {
-  return;
+  if (toEncrypt.length <= 3) {
+    return toEncrypt;
+  }
+  let firstString = "";
+  for (let i=0; i<toEncrypt.length; i=i+3) {
+    firstString += toEncrypt.charAt(i);
+  }
+  let secondString = "";
+  for (let i=1; i<toEncrypt.length; i=i+3) {
+    secondString += toEncrypt.charAt(i);
+  }
+  let thirdString = "";
+  for (let i=2; i<toEncrypt.length; i=i+3) {
+    thirdString += toEncrypt.charAt(i);
+  }
+  let encryptedString = firstString + secondString + thirdString;
+  return encryptedString;
 };

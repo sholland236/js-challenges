@@ -22,7 +22,10 @@
  */
 
 export const totalScoresArr = (scoresArr) => {
-  return;
+  const total = scoresArr.reduce((newTotal, elementToAdd) => {
+    return newTotal + elementToAdd;
+  })
+  return total;
 };
 
 /**
@@ -35,7 +38,11 @@ export const totalScoresArr = (scoresArr) => {
  */
 
 export const reverseString = (toReverse) => {
-  return;
+  const stringArr = toReverse.split("");
+  // reverse method to reverse contents of array
+  const reversed = stringArr.reverse();
+  const finalString = reversed.join("");
+  return finalString;
 };
 
 /**
@@ -48,7 +55,11 @@ export const reverseString = (toReverse) => {
  */
 
 export const sortCharactersAlphabetically = (charcterArr) => {
-  return;
+  const lower = charcterArr.map(element => {
+    return element.toLowerCase();
+  })
+  const sortedLower = lower.sort();
+  return sortedLower;
 };
 
 /**
@@ -63,7 +74,12 @@ export const sortCharactersAlphabetically = (charcterArr) => {
  */
 
 export const sortNumbersHighToLow = (numberArr) => {
-  return;
+  const copy = [...numberArr];
+  // pass function to sort array in reverse order
+  const sorted = copy.sort( (a,b) => {
+    return b-a;
+  })
+  return sorted;
 };
 
 /**
@@ -94,7 +110,16 @@ export const checkItemInstock = (toCheck) => {
     "blueberry",
     "melon",
   ];
-  return;
+  const inStock = stockList.includes(toCheck);
+  let response = "";
+  if (inStock) {
+    const aisle = stockList.indexOf(toCheck)
+    response += `${toCheck} is instock, it is on aisle ${aisle}.`;
+  } else {
+    response += `Sorry ${toCheck} is not instock.`;
+  }
+
+  return response;
 };
 
 /**
@@ -108,8 +133,13 @@ export const checkItemInstock = (toCheck) => {
  */
 
 export const checkPrimaryColours = (coloursArr) => {
-  return;
+  const areTheyPrimary = coloursArr.filter(color => {
+    return (color==="red" || color==="blue" || color==="yellow");
+  })
+  return areTheyPrimary === coloursArr;
 };
+
+// CANNOT COMPARE ARRAYS USING === USE EVERY()
 
 /**
  * Advanced Challenges
@@ -125,7 +155,8 @@ export const checkPrimaryColours = (coloursArr) => {
  */
 
 export const checkStringPalindrome = (stringOne) => {
-  return;
+  const reversed = reverseString(stringOne);
+  return reversed === stringOne;
 };
 
 /**
@@ -139,7 +170,10 @@ export const checkStringPalindrome = (stringOne) => {
  */
 
 export const totalNestedScoresArr = (scoresArr) => {
-  return;
+  const newArr = scoresArr.map(element => {
+    return totalScoresArr(element);
+  })
+  return newArr;
 };
 
 /**
